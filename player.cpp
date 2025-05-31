@@ -33,7 +33,7 @@ void Player::putPieces(Board* board)
 				&& mouseY_ < board->massPositionY_[j][i] + massHeight_
 				&& (mouseInput_ & MOUSE_INPUT_LEFT) == TRUE)
 			{
-				board->check(j, i, isTurn_);
+				//board->check(j, i, isTurn_);
 				//if (isTurn_)
 				//{
 				//	//ü‚è‚ÉƒRƒ}‚ª1ŒÂˆÈã‚ ‚é‚Æ‚«‚¾‚¯‚¨‚­
