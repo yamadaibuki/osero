@@ -14,11 +14,12 @@ public:
 	~Board();
 
 	void Draw_();		//描画
-	void reverse_();	//ひっくり返す
-	bool checkFlip(int y, int x, bool turn, int vec);
+	//void reverse_();	//ひっくり返す
+	/*bool checkFlip(int y, int x, bool turn, int vec);
 	int check(int y, int x, bool turn);
 	void flip(int y, int x, bool turn, int vec);
-	int put(int y, int x, bool turn);
+	int put(int y, int x, bool turn);*/
+	void checkDirection(int j, int i, bool isTurn);
 
 	int		massPositionX_[8][8];	//マス座標x
 	int		massPositionY_[8][8];	//マス座標y
@@ -35,7 +36,6 @@ public:
 private:
 	int		initPositionX_;			//初期座標x
 	int		initPositionY_;			//初期座標y
-	int		directionCount_;		//方向カウント
 
 	const int shift_		= 5;	//ずらし量
 	const int radius_		= 50;	//半径
