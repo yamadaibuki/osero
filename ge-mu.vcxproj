@@ -136,7 +136,6 @@
   <ItemGroup>
     <ClInclude Include="board.h" />
     <ClInclude Include="common.h" />
-    <ClInclude Include="memo.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="setting.h" />
   </ItemGroup>

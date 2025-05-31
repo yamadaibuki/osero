@@ -35,9 +35,6 @@
     <ClInclude Include="setting.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="memo.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="board.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
