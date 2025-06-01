@@ -14,11 +14,6 @@ public:
 	~Board();
 
 	void Draw_();		//•`‰æ
-	//void reverse_();	//‚Ğ‚Á‚­‚è•Ô‚·
-	/*bool checkFlip(int y, int x, bool turn, int vec);
-	int check(int y, int x, bool turn);
-	void flip(int y, int x, bool turn, int vec);
-	int put(int y, int x, bool turn);*/
 	void checkDirection(int j, int i, bool isTurn);
 
 	int		massPositionX_[8][8];	//ƒ}ƒXÀ•Wx

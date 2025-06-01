@@ -54,128 +54,6 @@ void Board::Draw_()
 		}
 	}
 }
-//
-////ひっくり返す
-//void Board::reverse_()
-//{
-//	for ( int dy = -1; dy <= 1; dy++)
-//	{
-//		for (int dx = -1; dx <= 1; dx++)
-//		{
-//			if (!dx && !dy)
-//			{
-//				continue;
-//			}
-//
-//
-//		}
-//	}
-//}
-//
-//int vec_y[] = { -1,-1,0,1,1,1,0,-1 };
-//int vec_x[] = { 0,1,1,1,0,-1,-1,-1 };
-//
-////ひっくり返すチェック
-//bool Board::checkFlip(int y, int x, bool turn, int vec)
-//{
-//	int flag = false;
-//	while (true) {
-//		y += vec_y[vec];
-//		x += vec_x[vec];
-//
-//		//盤面の外に出ていたら終了
-//		if (x < 0 || y < 0 || x > massNumber_ - 1 || y > massNumber_ - 1)
-//		{
-//			return false;
-//		}
-//
-//		//空きマスだったら終了
-//		if (massSituation_[y][x] == blank_)
-//		{
-//			return false;
-//		}
-//
-//		//相手のコマがあったらフラグを立てる
-//		if (massSituation_[y][x] == (turn ? white_ : black_))
-//		{
-//			flag = true;
-//			continue;
-//		}
-//
-//		//もしフラグがたっていればループ脱出。いなければ終了
-//		if (flag)
-//		{
-//			break;
-//		}
-//		return false;
-//	}
-//	return true;
-//}
-//
-////その場所に置くことができるかを確認する関数
-//int Board::check(int y, int x, bool turn)
-//{
-//	int vec;
-//
-//	//どれか一方向でもひっくり返るか確認
-//	for (vec = 0; vec < 8; ++vec)
-//	{
-//		if (checkFlip(y, x, turn, vec) == 1)
-//		{
-//			return 1;
-//		}
-//	}
-//
-//	return 0;
-//}
-//
-////実際に裏返す関数
-//void Board::flip(int y, int x, bool turn, int vec)
-//{
-//	while (true) {
-//		y += vec_y[vec];
-//		x += vec_x[vec];
-//
-//		//自分のコマがあったら終了
-//		if (massSituation_[y][x] == (turn ? white_ : black_))
-//		{
-//			break;
-//		}
-//
-//		//それ以外なら自分のコマで塗りつぶす
-//		massSituation_[y][x] = (turn ? white_ : black_);
-//	}
-//}
-//
-////入力を受けて裏返せるか確かめる関数
-//int Board::put(int y, int x, bool turn)
-//{
-//	int vec, flag = 0;
-//
-//	//空白でなければ終了
-//	if (massSituation_[y][x] != blank_)
-//	{
-//		return 0;
-//	}
-//
-//	//全方向について確認
-//	for (vec = 0; vec < 8; ++vec)
-//	{
-//		if (checkFlip(y, x, turn, vec) == 1)
-//		{
-//			//裏返す
-//			flip(y, x, turn, vec);
-//			flag = 1;
-//		}
-//	}
-//	if (flag == 1) {
-//		//この場所にコマを置く
-//		massSituation_[y][x] = (turn ? white_ : black_);
-//		return 1;
-//	}
-//
-//	return 0;
-//}
 
 //特定のマスの周り8方向を調べる
 void Board::checkDirection(int j, int i, bool isTurn)
@@ -201,12 +79,13 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_) && tempJ != j && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
 					{
-						if (massSituation_[tempJ + c][tempI + c] == (isTurn ? white_ : black_))
+						if (massSituation_[tempJ + c][tempI + c] == (isTurn ? white_ : black_) &&
+							tempJ + c != j && tempI + c != i)
 						{
 							massSituation_[tempJ + c][tempI + c] = (isTurn ? black_ : white_);
 						}
@@ -231,7 +110,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_) && tempJ != j)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -262,7 +141,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_) && tempJ != j && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -292,7 +171,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[j][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[j][tempI] == (isTurn ? black_ : white_) && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -323,7 +202,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_) && tempJ != j && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -353,7 +232,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_) && tempJ != j)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -384,7 +263,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_) && tempJ != j && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
@@ -414,7 +293,7 @@ void Board::checkDirection(int j, int i, bool isTurn)
 					break;
 				}
 				//次のマスが置いた色と同じだったらぬける
-				if (massSituation_[j][tempI] == (isTurn ? black_ : white_))
+				if (massSituation_[j][tempI] == (isTurn ? black_ : white_) && tempI != i)
 				{
 					//ひっくり返す
 					for (int c = 0; c < b; c++)
