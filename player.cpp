@@ -33,45 +33,41 @@ void Player::putPieces(Board* board)
 				&& mouseY_ < board->massPositionY_[j][i] + massHeight_
 				&& (mouseInput_ & MOUSE_INPUT_LEFT) == TRUE)
 			{
-				//board->check(j, i, isTurn_);
-				//if (isTurn_)
-				//{
-				//	//周りにコマが1個以上あるときだけおく
-				//	if (board->massSituation_[j - 1][i - 1] == board->white_
-				//		|| board->massSituation_[j - 1][i] == board->white_
-				//		|| board->massSituation_[j - 1][i + 1] == board->white_
-				//		|| board->massSituation_[j][i - 1] == board->white_
-				//		|| board->massSituation_[j][i + 1] == board->white_
-				//		|| board->massSituation_[j + 1][i - 1] == board->white_
-				//		|| board->massSituation_[j + 1][i] == board->white_
-				//		|| board->massSituation_[j + 1][i + 1] == board->white_)
-				//	{
-				//		board->massSituation_[j][i] = board->black_;
-				//		isTurn_ = false;
+				if (isTurn_)
+				{
+					//周りにコマが1個以上あるときだけおく
+					if (board->massSituation_[j - 1][i - 1] == board->white_
+						|| board->massSituation_[j - 1][i] == board->white_
+						|| board->massSituation_[j - 1][i + 1] == board->white_
+						|| board->massSituation_[j][i - 1] == board->white_
+						|| board->massSituation_[j][i + 1] == board->white_
+						|| board->massSituation_[j + 1][i - 1] == board->white_
+						|| board->massSituation_[j + 1][i] == board->white_
+						|| board->massSituation_[j + 1][i + 1] == board->white_)
+					{
+						board->massSituation_[j][i] = board->black_;
+						board->checkDirection(j, i, isTurn_);
+						isTurn_ = false;
+					}
+				}
+				else
+				{
+					//周りにコマが1個以上あるときだけおく
+					if (board->massSituation_[j - 1][i - 1] == board->black_
+						|| board->massSituation_[j - 1][i] == board->black_
+						|| board->massSituation_[j - 1][i + 1] == board->black_
+						|| board->massSituation_[j][i - 1] == board->black_
+						|| board->massSituation_[j][i + 1] == board->black_
+						|| board->massSituation_[j + 1][i - 1] == board->black_
+						|| board->massSituation_[j + 1][i] == board->black_
+						|| board->massSituation_[j + 1][i + 1] == board->black_)
+					{
 
-				//		board->reverse_();
-				//	}
-
-				//}
-				//else
-				//{
-				//	//周りにコマが1個以上あるときだけおく
-				//	if (board->massSituation_[j - 1][i - 1] == board->black_
-				//		|| board->massSituation_[j - 1][i] == board->black_
-				//		|| board->massSituation_[j - 1][i + 1] == board->black_
-				//		|| board->massSituation_[j][i - 1] == board->black_
-				//		|| board->massSituation_[j][i + 1] == board->black_
-				//		|| board->massSituation_[j + 1][i - 1] == board->black_
-				//		|| board->massSituation_[j + 1][i] == board->black_
-				//		|| board->massSituation_[j + 1][i + 1] == board->black_)
-				//	{
-
-				//		board->massSituation_[j][i] = board->white_;
-				//		isTurn_ = true;
-
-				//		board->reverse_();
-				//	}
-				//}
+						board->massSituation_[j][i] = board->white_;
+						board->checkDirection(j, i, isTurn_);
+						isTurn_ = true;
+					}
+				}
 			}
 		}
 	}

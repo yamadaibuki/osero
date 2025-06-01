@@ -204,10 +204,13 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
 				{
 					//ひっくり返す
-					/*for (int c = 0; c < b; c++)
+					for (int c = 0; c < b; c++)
 					{
-
-					}*/
+						if (massSituation_[tempJ + c][tempI + c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ + c][tempI + c] = (isTurn ? black_ : white_);
+						}
+					}
 					break;
 				}
 			}
@@ -225,6 +228,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				//次のマスが空白だったら抜ける
 				if (massSituation_[tempJ][i] == blank_)
 				{
+					break;
+				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[tempJ + c][i] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ + c][i] = (isTurn ? black_ : white_);
+						}
+					}
 					break;
 				}
 			}
@@ -245,6 +261,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				{
 					break;
 				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[tempJ + c][tempI - c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ + c][tempI - c] = (isTurn ? black_ : white_);
+						}
+					}
+					break;
+				}
 			}
 			break;
 
@@ -260,6 +289,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				//次のマスが空白だったら抜ける
 				if (massSituation_[j][tempI] == blank_)
 				{
+					break;
+				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[j][tempI] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[j][tempI - c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[j][tempI - c] = (isTurn ? black_ : white_);
+						}
+					}
 					break;
 				}
 			}
@@ -280,6 +322,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				{
 					break;
 				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[tempJ - c][tempI - c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ - c][tempI - c] = (isTurn ? black_ : white_);
+						}
+					}
+					break;
+				}
 			}
 			break;
 
@@ -295,6 +350,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				//次のマスが空白だったら抜ける
 				if (massSituation_[tempJ][i] == blank_)
 				{
+					break;
+				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[tempJ][i] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[tempJ - c][i] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ - c][i] = (isTurn ? black_ : white_);
+						}
+					}
 					break;
 				}
 			}
@@ -315,6 +383,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				{
 					break;
 				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[tempJ][tempI] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[tempJ - c][tempI + c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[tempJ - c][tempI + c] = (isTurn ? black_ : white_);
+						}
+					}
+					break;
+				}
 			}
 			break;
 
@@ -330,6 +411,19 @@ void Board::checkDirection(int j, int i, bool isTurn)
 				//次のマスが空白だったら抜ける
 				if (massSituation_[j][tempI] == blank_)
 				{
+					break;
+				}
+				//次のマスが置いた色と同じだったらぬける
+				if (massSituation_[j][tempI] == (isTurn ? black_ : white_))
+				{
+					//ひっくり返す
+					for (int c = 0; c < b; c++)
+					{
+						if (massSituation_[j][tempI + c] == (isTurn ? white_ : black_))
+						{
+							massSituation_[j][tempI + c] = (isTurn ? black_ : white_);
+						}
+					}
 					break;
 				}
 			}
